@@ -1,53 +1,58 @@
-/****** Main Styling ******/
-
 body {
 	font-family: 'Roboto', sans-serif;
-	font-size: 16px;
+	font-size: 1em;
 	color: #222;
-	background-color: #FaFaFa;
-	text-align: center;
 	line-height: 1.4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
-	padding: 0;
-	margin-top: 40px;
+  max-width: 750px;
+	padding: 1em 3em;
+	margin-top: 1.2em;
+  border: 2px black solid;
+  background: #FFD3D9;
+  text-align: center;
+  box-shadow: 0.25em 0.25em 0.75em rgba(0,0,0,.25),
+              0.125em 0.125em 0.25em rgba(0,0,0,.15);
+}
+
+.text{
+  text-align: justify;
+  margin-bottom: -1em;
+}
+
+h2 {
+  margin-top: -.05em;
 }
 
 h3 {
-  margin-top: 30px;
+  margin-top: 1.875em;
 }
 
-.footer {
-	margin-top: 40px;
-}
-
-.user-stories {
-  position: relative;
-  text-align: justify;
-  max-width: 700px;
-  margin: 15px auto;
-}
 code {
   font-family: monospace;
-  padding: 2px;
+  padding: .15em;
   color: black;
   background-color: #fff;
 }
-ol {
-	list-style-position: outside;
-}
-ul {
-	list-style-type: none;
-}
-
-li {
-  margin-bottom: 0.5em;
-}
-.user-stories li {
-  margin-bottom: 1em;
-}
 
 a {
-	color: #2574A9;
+  color:  #0000FF;
+}
+
+#input {
+	width: 200px;
+  padding: .1em .5em;
+}
+
+button {
+  border-radius: 2px;
+  border: 2px #ff6a80 solid;
+  background: #ff6a80;
+  color: white;
+  cursor: pointer;
 }

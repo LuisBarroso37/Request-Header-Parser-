@@ -2,35 +2,54 @@
 
 <html>
 
-   <head>
-      <title>Request Header Parser</title>
-      <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="style.css" rel="stylesheet" type="text/css">
-   </head>
+  <head>
+    <title>Request Header Parser</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
 
-   <body>
-      <div class="container">
-        <h2>API Project: Request Header Parser Microservice</h2>
-        <h3>User Story: </h3>
-        1. I can get the IP address, preferred languages (from header <code>Accept-Language</code>)<br> and system infos (from header <code>User-Agent</code>) for my device.
+  <body>
+    <div class="container">
+      
+      <h2>Request Header Parser Microservice</h2>
+        
+        <p class="text">You can put any word(s) in <code>https://request-header-parser-lb.glitch.me/api/&lt;word&gt;</code> and the API will return a JSON Object that contains your IP address, your preferred languages and some information about the browser you are using and your device's system.</p>
 
-        <h3>Example Usage:</h3>
+        <h3>Example:</h3>
+          <p><a target="_blank" href="https://request-header-parser-lb.glitch.me/api/hello">https://request-header-parser-lb.glitch.me/api/hello</a></p>
+
+        <h3>Output:</h3>
         <p>
-          [base url]/api/whoami
+          <code>{"ipaddress":"::ffff:159.20.14.100", "language":"en-US,en;q=0.5", "software":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"}</code>
         </p>
-
-        <h3>Example Output:</h3>
-        <p>
-          <code>{"ipaddress":"::ffff:159.20.14.100","language":"en-US,en;q=0.5",<br>"software":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"}</code>
-        </p>
+        
+        <p>Alternatively you can also write any word(s) in the input box below and you will get the same result:</p>
+        
+        <form id="wordForm">
+          <input type="text" id="input" name="word" placeholder="Insert any word" required>
+          <button type="submit" id="submit">Submit</button>
+        </form>
+      
       </div>
-      <div class="footer">
-        <p>
-          by <a href="http://www.freecodecamp.com">freeCodeCamp</a> | <a href="https://hyperdev.com/#!/remix/FCC_API_header_bplate/8c449aa9-a80c-47ad-8142-8da90f658731">Click here to Remix</a>
-        </p>
-      </div>
+      
+      <script>
+        let infoDevice = document.createElement('code');
+        document.querySelector(".container").appendChild(infoDevice);
+        infoDevice.style.display = "none";
+      
+        document.getElementById("wordForm").addEventListener("submit", e => {
+          e.preventDefault();
+          const data = document.querySelector("#input").value;
+        
+          fetch("/api/"+ data)
+          .then(res => res.json())
+          .then(data => {
+            infoDevice.style.display = "";
+            infoDevice.innerText = JSON.stringify(data);  
+          })
+        });
+      </script>
+    
    </body>
-
 
 </html>
